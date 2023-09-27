@@ -122,3 +122,13 @@ input[type="text"]::placeholder {
 		transform: rotate(360deg);
 	}
 }
+
+@media only screen and (max-width: 600px) {
+	input[type="text"] {
+		width: 80vw;
+	}
+
+	.card {
+		width: 100vw;
+	}
+}
