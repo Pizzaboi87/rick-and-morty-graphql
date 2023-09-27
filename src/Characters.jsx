@@ -1,8 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { RandomCharacter } from "./RandomCharacters";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
+import RandomCharacter from "./RandomCharacters";
+import { useEffect, useState } from "react";
+import { gql, useQuery } from "@apollo/client";
 
 export const GET_CHARACTERS = gql`
 query Characters($actualPage: Int, $name: String){
@@ -26,9 +26,9 @@ query Characters($actualPage: Int, $name: String){
 
 export const CharacterList = () => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [charactersData, setCharactersData] = useState(null);
 	const [actualPage, setActualPage] = useState(1);
 	const [allPage, setAllPage] = useState(0);
+
 	const { loading, error, data } = useQuery(GET_CHARACTERS, {
 		variables: { actualPage, name: searchTerm },
 	});
@@ -38,16 +38,13 @@ export const CharacterList = () => {
 		setActualPage(1);
 	};
 
-	useEffect(() => {
-		if (data) {
-			setCharactersData(data.characters.results);
-			setAllPage(data.characters.info.pages);
-		}
-	}, [data]);
-
-	const handlePageChange = (event, value) => {
+	const handlePageChange = (e, value) => {
 		setActualPage(value);
 	};
+
+	useEffect(() => {
+		if (data) setAllPage(data.characters.info.pages);
+	}, [data]);
 
 	return (
 		<div>
@@ -61,18 +58,17 @@ export const CharacterList = () => {
 			/>
 			{loading && (
 				<div className="loader-container">
-					<div className="loader"></div>
+					<div className="loader" />
 				</div>
 			)}
+
 			{error && <p>error</p>}
-			{data?.characters.results.length === 0 && (
-				<>
-					<RandomCharacter />
-				</>
-			)}
+
+			{data?.characters.results.length === 0 && <RandomCharacter />}
+
 			{data && (
 				<div className="container">
-					{charactersData.map((character, index) => (
+					{data.characters.results.map((character, index) => (
 						<div
 							className="card"
 							key={`${character.name}-${index}`}
@@ -94,6 +90,7 @@ export const CharacterList = () => {
 					))}
 				</div>
 			)}
+
 			<div className="pagination">
 				<Stack spacing={2}>
 					<Pagination

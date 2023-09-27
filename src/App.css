@@ -2,7 +2,7 @@
 
 body {
 	background: navajowhite;
-	font-family: Roboto, veranda;
+	font-family: "Roboto", sans-serif;
 	padding-bottom: 4em;
 }
 
@@ -24,25 +24,27 @@ body {
 	margin: auto;
 	overflow: hidden;
 	margin-bottom: 2em;
+	border-radius: 5%;
 }
 
 .card * {
 	position: relative;
 	z-index: 2;
+	cursor: crosshair;
 }
 
 .card:hover .info {
-	bottom: -3em;
-	opacity: 1;
-	padding: 2px 1px;
+	bottom: 0;
+	opacity: 0.9;
+	padding: 15% 5%;
 	background-color: navajowhite;
+	height: 100%;
 }
 
 .info {
-	font-family: "Droid Serif", serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 1.2em;
 	color: black;
-
 	line-height: 1.1em;
 	padding: 0 2em;
 	position: relative;
@@ -51,6 +53,10 @@ body {
 	background: transparent;
 	transition: opacity 0.3s, bottom 0.3s;
 	text-align: center;
+}
+
+.info h2 {
+	line-height: 1.2em;
 }
 
 .pagination {
@@ -82,13 +88,11 @@ input[type="text"]::placeholder {
 
 /* no result */
 .intro {
-	/* width: 10px; */
 	text-align: center;
 	margin: 0 auto;
 	color: black;
-	font-family: "Droid Serif", serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 23px;
-	font-style: italic;
 	line-height: 20px;
 	padding-bottom: 15px;
 }

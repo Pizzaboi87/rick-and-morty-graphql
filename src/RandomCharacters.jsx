@@ -16,7 +16,7 @@ export const GET_SINGLE_CHARACTER = gql`
   },
 `;
 
-export const RandomCharacter = () => {
+const RandomCharacter = () => {
 	const [randomNumber, setRandomNumber] = useState(
 		Math.floor(Math.random() * 200)
 	);
@@ -33,7 +33,6 @@ export const RandomCharacter = () => {
 				How about this one instead? 😉
 			</p>
 
-			{/*loading && <p>loading...</p>*/}
 			{loading && (
 				<div className="loader-container">
 					<div className="loader"></div>
@@ -66,3 +65,5 @@ export const RandomCharacter = () => {
 		</div>
 	);
 };
+
+export default RandomCharacter;
